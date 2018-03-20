@@ -1,0 +1,23 @@
+{
+  "name": "vidjot",
+  "version": "1.0.0",
+  "description": "A webapp to jot down creative Video  Idea",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Govind273/VidJot.git"
+  },
+  "author": "Govind",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Govind273/VidJot/issues"
+  },
+  "homepage": "https://github.com/Govind273/VidJot#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0"
+  }
+}
