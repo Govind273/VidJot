@@ -12,6 +12,7 @@ mongoose.connect('mongodb://localhost/vidjot-dev', {
     .then(() => console.log('MongoDB Connected ...'))
     .catch(err => console.log(err));
 
+
 //Import the Idea Model into the app.js
 require('./models/Ideas');
 const Idea = mongoose.model('ideas');
@@ -22,6 +23,7 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
+//Home route
 app.get('/',(req,res) => {
     const myStory ='I will be the best Person I would know';
     res.render('index',{
@@ -29,10 +31,17 @@ app.get('/',(req,res) => {
     });
 });
 
+//About Route
 app.get('/about',(req,res) => {    
     res.render('about',{
     });
 });
+
+//Add Idea form
+app.get('/ideas/add',(req,res) => {
+    res.render('ideas/add');
+});
+
 
 const port = 5000;
 
