@@ -12,6 +12,9 @@ mongoose.connect('mongodb://localhost/vidjot-dev', {
     .then(() => console.log('MongoDB Connected ...'))
     .catch(err => console.log(err));
 
+//Import the Idea Model into the app.js
+require('./models/Ideas');
+const Idea = mongoose.model('ideas');
 
 //Handlebars Middleware
 app.engine('handlebars', exphbs({
