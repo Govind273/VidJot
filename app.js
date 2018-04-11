@@ -57,7 +57,6 @@ app.get('/ideas',(req,res) => {
                 ideas: ideas
             });
         });
-
 });
 
 
