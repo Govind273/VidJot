@@ -48,6 +48,20 @@ app.get('/ideas/add',(req,res) => {
     res.render('ideas/add');
 });
 
+//get method Ideas
+app.get('/ideas',(req,res) => {
+    Idea.find({})
+        .sort({date:'desc'})
+        .then(ideas =>{
+            res.render('ideas/index',{
+                ideas: ideas
+            });
+        });
+
+});
+
+
+//Ideas page post method
 app.post('/ideas',(req,res) =>{
     let errors = [];
     if(!req.body.title){
@@ -63,7 +77,15 @@ app.post('/ideas',(req,res) =>{
             details: req.body.details
         });
     }else{
-        res.send('Oks');
+        const newUser = {
+            title: req.body.title,
+            details: req.body.details
+        };
+        new Idea(newUser)
+            .save()
+            .then(idea => {
+                res.redirect('/ideas');
+            })
     }
 });
 
