@@ -1,7 +1,7 @@
 const express = require('express');
 const exphbs  = require('express-handlebars');
 const mongoose = require('mongoose');
-
+const bodyParser = require('body-parser');
 const app = express();
 
 mongoose.Promise = global.Promise;
@@ -23,6 +23,12 @@ app.engine('handlebars', exphbs({
 }));
 app.set('view engine', 'handlebars');
 
+
+//Body Parser Middlewares
+app.use(bodyParser.urlencoded({extended : false }))
+app.use(bodyParser.json())
+
+
 //Home route
 app.get('/',(req,res) => {
     const myStory ='I will be the best Person I would know';
@@ -37,9 +43,28 @@ app.get('/about',(req,res) => {
     });
 });
 
-//Add Idea form
+//Handling the Add Idea link
 app.get('/ideas/add',(req,res) => {
     res.render('ideas/add');
+});
+
+app.post('/ideas',(req,res) =>{
+    let errors = [];
+    if(!req.body.title){
+        errors.push({text: "Please provide a title"});
+    }
+    if(!req.body.details){
+        errors.push({text: "Please add some details"});
+    }
+    if(errors.length > 0){
+        res.render('ideas/add',{
+            errors: errors,
+            title: req.body.title,
+            details: req.body.details
+        });
+    }else{
+        res.send('Oks');
+    }
 });
 
 
